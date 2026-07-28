@@ -13,6 +13,9 @@ correta. O tema conecta-se a um software de gestão para fazendas leiteiras
 já em produção, desenvolvido de forma independente pelo autor, que motivou
 a escolha do domínio e do dataset (ver `docs/Fase1_Proposta_AgroSele.docx`).
 
+**Repositório:** https://github.com/fredmartins12/AgroSele-MilkQA
+**Slides da apresentação:** `docs/Apresentacao_AgroSele.pptx`
+
 ## Documentação (entregas da disciplina)
 
 Toda a documentação formal está em [`docs/`](docs/) (cópia de conveniência
