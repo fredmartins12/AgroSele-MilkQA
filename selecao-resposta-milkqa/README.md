@@ -184,7 +184,7 @@ seu cache de embeddings ou seus dados. Accuracy@1 / MRR no teste (300 perguntas)
 |---|---|---:|---:|
 | `selecao-resposta-milkqa-classico/` | TF-IDF + cosseno, à mão, sem BERT | 0,503 | 0,610 |
 | **`selecao-resposta-milkqa/`** (esta) | Bi-encoder congelado + MLP | 0,570 | 0,679 |
-| `selecao-resposta-milkqa-crossencoder/` | Cross-Encoder (atenção cruzada), congelado | 0,617 | 0,715 |
+| `selecao-resposta-milkqa-crossencoder/` | Cross-Encoder (self-attention conjunta), congelado | 0,617 | 0,715 |
 | `selecao-resposta-milkqa-hibrido/` | Bi-encoder congelado + BM25 fundido + MLP | 0,663 | 0,753 |
 | `selecao-resposta-milkqa-finetune/` | Fine-tuning parcial do BERTimbau (recomendada) | 0,690 | 0,782 |
 | `selecao-resposta-milkqa-crossencoder/` (pipeline) | BM25 filtra top-10 → Cross-Encoder reranqueia | 0,590 | 0,675 |

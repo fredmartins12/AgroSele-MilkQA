@@ -4,7 +4,7 @@ por extrair_features_pares.py (vetor pooler_output de 768d para cada par
 (pergunta, candidata), com a pergunta e a candidata processadas JUNTAS pelo
 BERT -- ao contrario do bi-encoder, aqui nao existe "embedding da pergunta"
 e "embedding da resposta" separados, so um vetor que ja representa o PAR
-inteiro, calculado com atencao cruzada entre os dois textos.
+inteiro, calculado com self-attention conjunta sobre os dois textos.
 
 Como o BERT ficou congelado na extracao, essa etapa e rapida: e só treinar
 uma cabeca de classificacao pequena sobre vetores ja prontos (768d, nao

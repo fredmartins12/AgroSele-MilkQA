@@ -43,7 +43,7 @@ para reproduzir os resultados sem precisar re-treinar do zero.
 | — | *(baseline)* | Similaridade de cosseno, BERTimbau sem treino | 0,277 | 0,392 |
 | 1 | [`selecao-resposta-milkqa-classico/`](selecao-resposta-milkqa-classico/) | TF-IDF + cosseno, implementado à mão, sem BERT | 0,503 | 0,610 |
 | 2 | [`selecao-resposta-milkqa/`](selecao-resposta-milkqa/) | Bi-encoder: BERTimbau congelado + MLP | 0,570 | 0,679 |
-| 3 | [`selecao-resposta-milkqa-crossencoder/`](selecao-resposta-milkqa-crossencoder/) | Cross-Encoder: atenção cruzada pergunta↔candidata, congelado | 0,617 | 0,715 |
+| 3 | [`selecao-resposta-milkqa-crossencoder/`](selecao-resposta-milkqa-crossencoder/) | Cross-Encoder: self-attention conjunta sobre pergunta+candidata, congelado | 0,617 | 0,715 |
 | 3b | `selecao-resposta-milkqa-crossencoder/` (pipeline) | BM25 filtra top-10 → Cross-Encoder reranqueia | 0,590 | 0,675 |
 | 4 | [`selecao-resposta-milkqa-hibrido/`](selecao-resposta-milkqa-hibrido/) | Bi-encoder congelado + BM25 fundido no vetor de entrada | 0,663 | 0,753 |
 | 5 | [`selecao-resposta-milkqa-finetune/`](selecao-resposta-milkqa-finetune/) | Fine-tuning parcial do BERTimbau (**melhor resultado isolado**) | **0,690** | **0,782** |
@@ -58,8 +58,9 @@ para reproduzir os resultados sem precisar re-treinar do zero.
    (0,570): o MLP aprende uma noção de correspondência que vai além da
    similaridade bruta.
 3. **Trocar a arquitetura (Cross-Encoder) ajuda mais que esperado, sem
-   nenhum treino do BERT** (0,617): atenção cruzada entre pergunta e
-   candidata captura sinal que dois embeddings separados não expõem.
+   nenhum treino do BERT** (0,617): self-attention operando conjuntamente
+   sobre pergunta e candidata captura sinal que dois embeddings separados
+   não expõem.
 4. **Fundir o sinal lexical explicitamente (híbrido BM25) ajuda mais ainda,
    e mais barato** (0,663, ~2 minutos de treino): quase alcança o
    fine-tuning completo sem tocar nos pesos do BERT.
