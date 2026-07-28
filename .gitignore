@@ -7,3 +7,5 @@ selecao-resposta-milkqa-finetune/checkpoints/best_model_finetuned.pt
 __pycache__/
 *.pyc
 .ipynb_checkpoints/
+docs/Fases AgroSele.zip
+docs/Fases AgroSele/
