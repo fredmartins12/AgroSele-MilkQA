@@ -1,0 +1,121 @@
+Device: cpu
+Carregando textos (corpus.csv / queries.csv)...
+Carregando splits oficiais do MilkQA...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Carregando neuralmind/bert-base-portuguese-cased para fine-tuning parcial...
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 13088.70it/s]
+[transformers] [1mBertModel LOAD REPORT[0m from: neuralmind/bert-base-portuguese-cased
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.seq_relationship.bias                  | UNEXPECTED |  | 
+cls.seq_relationship.weight                | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.predictions.decoder.weight             | UNEXPECTED |  | 
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  BERT: 7,678,464 / 108,923,136 parametros treinaveis (7.0%, ultima(s) 1 camada(s) de 12)
+
+Montando exemplos de treino (2307 perguntas, 6 negativos cada)...
+  16149 exemplos
+
+===== Treino (fine-tuning parcial) =====
+    epoca 1, batch 200/2019 | 0.33h decorridas
+    epoca 1, batch 400/2019 | 0.65h decorridas
+    epoca 1, batch 600/2019 | 1.03h decorridas
+    epoca 1, batch 800/2019 | 1.42h decorridas
+    epoca 1, batch 1000/2019 | 1.82h decorridas
+    epoca 1, batch 1200/2019 | 2.20h decorridas
+    epoca 1, batch 1400/2019 | 2.56h decorridas
+    epoca 1, batch 1600/2019 | 2.92h decorridas
+    epoca 1, batch 1800/2019 | 3.33h decorridas
+    epoca 1, batch 2000/2019 | 3.73h decorridas
+  epoca 1/5 | loss=0.2782 | dev(sub) Acc@1=0.5333 MRR=0.6746 | 3.78h decorridas | ETA restante ~15.1h
+    epoca 2, batch 200/2019 | 4.23h decorridas
+    epoca 2, batch 400/2019 | 4.62h decorridas
+    epoca 2, batch 600/2019 | 5.01h decorridas
+    epoca 2, batch 800/2019 | 5.35h decorridas
+    epoca 2, batch 1000/2019 | 5.53h decorridas
+    epoca 2, batch 1200/2019 | 5.73h decorridas
+    epoca 2, batch 1400/2019 | 5.98h decorridas
+    epoca 2, batch 1600/2019 | 6.23h decorridas
+    epoca 2, batch 1800/2019 | 6.46h decorridas
+    epoca 2, batch 2000/2019 | 6.69h decorridas
+  epoca 2/5 | loss=0.1862 | dev(sub) Acc@1=0.6667 MRR=0.7313 | 6.72h decorridas | ETA restante ~10.1h
+    epoca 3, batch 200/2019 | 6.92h decorridas
+    epoca 3, batch 400/2019 | 7.16h decorridas
+
+===== RETOMADA APOS REINICIO DO PC (Tue Jul 28 01:31:03 HPBA 2026) =====
+Device: cpu
+Carregando textos (corpus.csv / queries.csv)...
+Carregando splits oficiais do MilkQA...
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Carregando neuralmind/bert-base-portuguese-cased para fine-tuning parcial...
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|##########| 199/199 [00:00<00:00, 22075.87it/s]
+[transformers] [1mBertModel LOAD REPORT[0m from: neuralmind/bert-base-portuguese-cased
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.seq_relationship.bias                  | UNEXPECTED |  | 
+cls.seq_relationship.weight                | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.predictions.decoder.weight             | UNEXPECTED |  | 
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  BERT: 7,678,464 / 108,923,136 parametros treinaveis (7.0%, ultima(s) 1 camada(s) de 12)
+
+Montando exemplos de treino (2307 perguntas, 6 negativos cada)...
+  16149 exemplos
+
+===== Treino (fine-tuning parcial) =====
+Retomando de checkpoints/best_model_finetuned_INPROGRESS.pt (epocas 1-2 ja concluidas)...
+  Pesos carregados. best_mrr(sub) anterior = 0.7313. Retomando a partir da epoca 3/5.
+    epoca 3, batch 200/2019 | 0.16h decorridas
+    epoca 3, batch 400/2019 | 0.31h decorridas
+    epoca 3, batch 600/2019 | 0.47h decorridas
+    epoca 3, batch 800/2019 | 0.62h decorridas
+    epoca 3, batch 1000/2019 | 0.78h decorridas
+    epoca 3, batch 1200/2019 | 0.93h decorridas
+    epoca 3, batch 1400/2019 | 1.09h decorridas
+    epoca 3, batch 1600/2019 | 1.24h decorridas
+    epoca 3, batch 1800/2019 | 1.39h decorridas
+    epoca 3, batch 2000/2019 | 1.55h decorridas
+  epoca 3/5 | loss=0.1445 | dev(sub) Acc@1=0.7333 MRR=0.7921 | 1.57h decorridas | ETA restante ~3.1h
+    epoca 4, batch 200/2019 | 1.73h decorridas
+    epoca 4, batch 400/2019 | 1.88h decorridas
+    epoca 4, batch 600/2019 | 2.04h decorridas
+    epoca 4, batch 800/2019 | 2.19h decorridas
+    epoca 4, batch 1000/2019 | 2.34h decorridas
+    epoca 4, batch 1200/2019 | 2.50h decorridas
+    epoca 4, batch 1400/2019 | 2.66h decorridas
+    epoca 4, batch 1600/2019 | 2.81h decorridas
+    epoca 4, batch 1800/2019 | 2.97h decorridas
+    epoca 4, batch 2000/2019 | 3.12h decorridas
+  epoca 4/5 | loss=0.1249 | dev(sub) Acc@1=0.6667 MRR=0.7817 | 3.14h decorridas | ETA restante ~1.6h
+    epoca 5, batch 200/2019 | 3.29h decorridas
+    epoca 5, batch 400/2019 | 3.45h decorridas
+    epoca 5, batch 600/2019 | 3.60h decorridas
+    epoca 5, batch 800/2019 | 3.76h decorridas
+    epoca 5, batch 1000/2019 | 3.92h decorridas
+    epoca 5, batch 1200/2019 | 4.08h decorridas
+    epoca 5, batch 1400/2019 | 4.22h decorridas
+    epoca 5, batch 1600/2019 | 4.36h decorridas
+    epoca 5, batch 1800/2019 | 4.50h decorridas
+    epoca 5, batch 2000/2019 | 4.63h decorridas
+  epoca 5/5 | loss=0.1028 | dev(sub) Acc@1=0.5333 MRR=0.7024 | 4.66h decorridas | ETA restante ~0.0h
+
+===== Avaliacao final completa (dev inteiro + teste inteiro) =====
+Dev completo (50)  -> Acc@1=0.6800 MRR=0.7810 (51s)
+Teste completo (300) -> Acc@1=0.6900 MRR=0.7821 (100s)
+
+Comparar com a versao congelada (../selecao-resposta-milkqa/): Acc@1=0.570 | MRR=0.679
+
+Checkpoint salvo em checkpoints/best_model_finetuned.pt

@@ -1,0 +1,9 @@
+# Checkpoints e caches grandes demais para o GitHub (limite de 100MB por arquivo).
+# Recriáveis rodando os scripts documentados em cada README (extrair_features_pares.py,
+# pre_processing.py, finetune_model.py) -- não essenciais para revisar o código.
+selecao-resposta-milkqa-crossencoder/cache/pair_features_crossencoder.pt
+selecao-resposta-milkqa-finetune/checkpoints/best_model_finetuned.pt
+
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
