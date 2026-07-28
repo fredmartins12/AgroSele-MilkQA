@@ -176,8 +176,10 @@ Terceira tentativa de melhoria: em vez de manter o BERTimbau totalmente
 congelado, a **última camada do encoder** (1 de 12, ~7% dos parâmetros do
 modelo, 7,7M de 108,9M) e o *pooler* foram descongelados e treinados
 junto com a cabeça MLP, com taxa de aprendizado menor para o BERT
-(2×10⁻⁵) do que para a cabeça (1×10⁻³) — prática padrão em fine-tuning.
-Implementado em `finetune_model.py`.
+(2×10⁻⁵) do que para a cabeça (1×10⁻³) — estratégia de descongelamento
+parcial que, combinada a essa taxa de aprendizado baixa no backbone,
+reduz o risco de catastrophic forgetting do conhecimento linguístico
+pré-treinado. Implementado em `finetune_model.py`.
 
 ### Tentativa 1 (falhou): amostra pequena por restrição de tempo
 

@@ -42,6 +42,11 @@ Ranking das 50 candidatas pela similaridade → resposta selecionada
 Nenhuma etapa envolve treinamento — é um método puramente estatístico,
 sem parâmetros aprendidos por gradiente.
 
+O IDF acima usa suavização aditiva (`log(N/(1+df))+1`) em vez da forma
+"pura" `log(N/df)` — variante padrão (equivalente à do scikit-learn) que
+evita IDF nulo ou indefinido para termos que aparecem em todos os
+documentos ou em nenhum, sem alterar a ordenação relativa dos termos.
+
 ## Resultado
 
 | Método | Accuracy@1 (teste, 300) | MRR (teste) | Tempo total |

@@ -5,10 +5,10 @@ até aqui, todas as arquiteturas (congelada, fine-tuning, TF-IDF, híbrida)
 eram **bi-encoder** — pergunta e resposta viram embeddings separados,
 combinados depois. Esta pasta implementa um **Cross-Encoder** de verdade
 (pergunta e candidata processadas *juntas* pelo BERT, com self-attention
-operando conjuntamente sobre as duas) e um **pipeline multi-estágio** (BM25 filtra rápido, o
-Cross-Encoder reranqueia só o que sobrou) — as duas lacunas identificadas
-numa revisão externa do projeto (Gemini) que o bi-encoder, por construção,
-não cobre.
+operando conjuntamente sobre as duas) e um **pipeline multi-estágio**
+(BM25 filtra rápido, o Cross-Encoder reranqueia só o que sobrou) — as
+duas lacunas identificadas numa revisão externa do projeto (Gemini) que
+o bi-encoder, por construção, não cobre.
 
 ## Por que Cross-Encoder é diferente
 
@@ -16,11 +16,11 @@ No bi-encoder, `emb(pergunta)` e `emb(candidata)` são calculados de forma
 totalmente independente — o BERT nunca "vê" os dois textos ao mesmo tempo.
 No Cross-Encoder, a entrada do BERT é a sequência conjunta
 `[CLS] pergunta [SEP] candidata [SEP]`, processada com **self-attention
-conjunta**: cada palavra da pergunta pode atender diretamente a cada palavra da
-candidata (e vice-versa) em todas as camadas do Transformer, antes de
-qualquer decisão de classificação. Isso costuma dar mais qualidade, ao
-custo de não poder cachear/reaproveitar embeddings entre pares diferentes
-— cada par exige uma passada nova pelo BERT.
+conjunta**: cada palavra da pergunta pode atender diretamente a cada
+palavra da candidata (e vice-versa) em todas as camadas do Transformer,
+antes de qualquer decisão de classificação. Isso costuma dar mais
+qualidade, ao custo de não poder cachear/reaproveitar embeddings entre
+pares diferentes — cada par exige uma passada nova pelo BERT.
 
 Vale uma nota de precisão terminológica: isso é tecnicamente diferente da
 **cross-attention** entre encoder e decoder de arquiteturas
@@ -50,14 +50,14 @@ PIPELINE MULTI-ESTÁGIO (Nível 5)
 
 Fine-tunar um Cross-Encoder de verdade (backprop através do BERT, pra cada
 par) seria proibitivo em CPU: perfilamento real (`profile_crossencoder.py`)
-mediu ~362ms por par só no forward. Congelando o BERT, isolamos o efeito da
-**arquitetura** (self-attention conjunta) do efeito de ajustar pesos — comparável,
-em espírito, à variante congelada do bi-encoder. Mesmo assim, como não há
-cache possível entre pares diferentes, a extração de features (uma vez,
-depois reaproveitada) ainda levou ~2,25h em CPU para os 38.263 pares
-necessários (treino + dev + teste completos) — ver `extrair_features_pares.py`,
-com checkpoint incremental a cada 500 pares (mesma lição de resiliência do
-projeto de fine-tuning).
+mediu ~362ms por par só no forward. Congelando o BERT, isolamos o efeito
+da **arquitetura** (self-attention conjunta) do efeito de ajustar pesos —
+comparável, em espírito, à variante congelada do bi-encoder. Mesmo assim,
+como não há cache possível entre pares diferentes, a extração de
+features (uma vez, depois reaproveitada) ainda levou ~2,25h em CPU para
+os 38.263 pares necessários (treino + dev + teste completos) — ver
+`extrair_features_pares.py`, com checkpoint incremental a cada 500 pares
+(mesma lição de resiliência do projeto de fine-tuning).
 
 ## Resultado — Cross-Encoder
 
@@ -80,7 +80,8 @@ busca eficiente (não dá para pré-computar o embedding de uma candidata
 independente da pergunta). Ainda assim, fica atrás do híbrido e do
 fine-tuning — sugerindo que o sinal lexical explícito (BM25) e o ajuste de
 pesos continuam sendo mais valiosos que a arquitetura de self-attention
-conjunta isolada, ao menos nesta escala de dado e sem fine-tuning do cross-encoder.
+conjunta isolada, ao menos nesta escala de dado e sem fine-tuning do
+cross-encoder.
 
 ## Resultado — Pipeline Multi-Estágio (BM25 → Cross-Encoder)
 
